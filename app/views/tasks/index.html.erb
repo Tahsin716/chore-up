@@ -1,1 +1,13 @@
-<h1>Hello</h1>
+<div id="jobs">
+  <% @tasks.each do |task| %>
+    <div class="job">
+      <h2>
+        <%= link_to task.title, task %>
+      </h2>
+      <br/>
+      <p>
+        <%= task.company %>
+      </p>
+    </div>
+  <% end %>
+</div>
