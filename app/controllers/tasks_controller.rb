@@ -28,11 +28,16 @@ class TasksController < ApplicationController
 	end
 
 	def update
-		
+		if @task.update
+			redirect_to @task
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
-		
+		@task.destroy
+		redirect_to root_path
 	end
 
 	private
