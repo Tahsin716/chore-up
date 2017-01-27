@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ChoreUp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+	<head>
+	  <title>ChoreUp</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
 <body>
-
-<%= yield %>
-
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-brand">
+        <%= link_to "ChoreUp", root_path %>
+      </div>
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to "All Tasks", root_path %>
+        </li>
+        <% Category.all.each do |category| %>
+          <li>
+            <%= link_to category.name, tasks_path(category: category.name) %>
+          </li>
+        <% end %>
+      </ul>
+      <%= link_to "New Task", new_task_path, class: "navbar-text navbar-right navbar-link" %>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>
